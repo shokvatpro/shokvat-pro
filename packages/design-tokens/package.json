@@ -1,0 +1,19 @@
+{
+  "name": "@shokfat/design-tokens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shokfat Pro design tokens: platform identity (locked), light/dark themes, tenant overrides (allow-listed).",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.css": "./dist/tokens.css",
+    "./tailwind-theme.css": "./dist/tailwind-theme.css",
+    "./tokens.json": "./dist/tokens.json"
+  },
+  "scripts": {
+    "build": "tsx src/build.ts",
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": { "tsx": "^4.20.0", "typescript": "^6.0.0", "@types/node": "^22.0.0" }
+}

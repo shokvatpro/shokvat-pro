@@ -1,0 +1,17 @@
+{
+  "name": "@shokfat/i18n",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Arabic-first translations, direction helpers and locale formatting for Shokfat Pro.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./messages/ar.json": "./messages/ar.json",
+    "./messages/en.json": "./messages/en.json"
+  },
+  "scripts": {
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": { "tsx": "^4.20.0", "typescript": "^6.0.0", "@types/node": "^22.0.0" }
+}

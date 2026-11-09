@@ -1,0 +1,63 @@
+{
+  "$description": "Shokfat Pro platform primitives. Owned by the platform owner. Tenants can NOT override these.",
+  "color": {
+    "navy": {
+      "50":  { "$type": "color", "$value": "#F3F6FB" },
+      "100": { "$type": "color", "$value": "#E6EDF8" },
+      "200": { "$type": "color", "$value": "#B9CBEA" },
+      "300": { "$type": "color", "$value": "#A9C4F5" },
+      "400": { "$type": "color", "$value": "#7AA5F0" },
+      "500": { "$type": "color", "$value": "#3A6FC4" },
+      "600": { "$type": "color", "$value": "#2457A6" },
+      "700": { "$type": "color", "$value": "#17407F" },
+      "800": { "$type": "color", "$value": "#0E2D5C" },
+      "900": { "$type": "color", "$value": "#071E3F", "$description": "Logo navy, extracted from the Shokfat logo" },
+      "950": { "$type": "color", "$value": "#04132A" }
+    },
+    "teal": {
+      "50":  { "$type": "color", "$value": "#E3F5F2" },
+      "400": { "$type": "color", "$value": "#3CC9B5" },
+      "500": { "$type": "color", "$value": "#0E9F8E" },
+      "700": { "$type": "color", "$value": "#0B7A6E" },
+      "900": { "$type": "color", "$value": "#064E46" }
+    },
+    "gray": {
+      "0":   { "$type": "color", "$value": "#FFFFFF" },
+      "50":  { "$type": "color", "$value": "#F6F8FB" },
+      "100": { "$type": "color", "$value": "#EEF1F5" },
+      "200": { "$type": "color", "$value": "#E3E7EE" },
+      "300": { "$type": "color", "$value": "#CBD3DF" },
+      "500": { "$type": "color", "$value": "#5B6170", "$description": "Logo gray #707276 darkened to reach 4.5:1 on white" },
+      "600": { "$type": "color", "$value": "#4A5262" },
+      "900": { "$type": "color", "$value": "#0B1526" }
+    }
+  },
+  "font": {
+    "display": { "$type": "fontFamily", "$value": ["Readex Pro", "IBM Plex Sans Arabic", "system-ui", "sans-serif"] },
+    "body":    { "$type": "fontFamily", "$value": ["IBM Plex Sans Arabic", "Readex Pro", "system-ui", "sans-serif"] },
+    "mono":    { "$type": "fontFamily", "$value": ["IBM Plex Mono", "ui-monospace", "monospace"] }
+  },
+  "text": {
+    "display": { "$type": "typography", "$value": { "fontSize": "2.25rem",   "lineHeight": "2.75rem", "fontWeight": 700, "fontFamily": "{font.display}" } },
+    "h1":      { "$type": "typography", "$value": { "fontSize": "1.5rem",    "lineHeight": "2rem",    "fontWeight": 600, "fontFamily": "{font.display}" } },
+    "h2":      { "$type": "typography", "$value": { "fontSize": "1.125rem",  "lineHeight": "1.625rem","fontWeight": 600, "fontFamily": "{font.display}" } },
+    "body":    { "$type": "typography", "$value": { "fontSize": "0.9375rem", "lineHeight": "1.5rem",  "fontWeight": 400, "fontFamily": "{font.body}" } },
+    "caption": { "$type": "typography", "$value": { "fontSize": "0.8125rem", "lineHeight": "1.125rem","fontWeight": 400, "fontFamily": "{font.body}" } }
+  },
+  "radius": {
+    "sm":   { "$type": "dimension", "$value": "6px" },
+    "md":   { "$type": "dimension", "$value": "10px" },
+    "lg":   { "$type": "dimension", "$value": "16px" },
+    "full": { "$type": "dimension", "$value": "999px" }
+  },
+  "size": {
+    "touch": { "$type": "dimension", "$value": "44px", "$description": "Minimum touch target" }
+  },
+  "shadow": {
+    "overlay": { "$type": "shadow", "$value": "0 12px 32px -12px rgb(7 30 63 / 0.35)" }
+  },
+  "motion": {
+    "fast": { "$type": "duration", "$value": "120ms" },
+    "base": { "$type": "duration", "$value": "200ms" }
+  }
+}

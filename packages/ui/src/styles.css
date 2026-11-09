@@ -1,0 +1,26 @@
+/*
+ * Import once in each app's global stylesheet:
+ *   @import "@shokfat/ui/styles.css";
+ *   @source "../node_modules/@shokfat/ui/src";
+ */
+@import "tailwindcss";
+@import "@shokfat/design-tokens/tailwind-theme.css";
+@import "@shokfat/design-tokens/tokens.css";
+
+@layer base {
+  html {
+    font-family: var(--sp-font-body);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+  }
+  h1, h2, h3 { font-family: var(--sp-font-display); }
+  :focus-visible { outline-color: var(--color-focus); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "brand": {
+    "product": "شوكفات برو",
+    "company": "شوكفات",
+    "pro": "برو",
+    "poweredBy": "يعمل بواسطة شوكفات برو",
+    "copyright": "© {year} شوكفات. جميع الحقوق محفوظة."
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "close": "إغلاق",
+    "search": "بحث",
+    "filter": "تصفية",
+    "loading": "جارٍ التحميل…",
+    "retry": "إعادة المحاولة",
+    "viewAll": "عرض الكل",
+    "more": "المزيد",
+    "unassigned": "غير معيّن",
+    "required": "مطلوب",
+    "optional": "اختياري",
+    "language": "اللغة",
+    "switchLanguage": "English",
+    "themeToggle": "تبديل الوضع الداكن",
+    "themeLight": "فاتح",
+    "themeDark": "داكن",
+    "themeSystem": "حسب الجهاز"
+  },
+  "demo": {
+    "badge": "بيانات تجريبية",
+    "notice": "كل الأسماء والأرقام في هذه الشاشة وهمية لأغراض العرض."
+  },
+  "auth": {
+    "welcomeBack": "مرحبًا بعودتك",
+    "subtitle": "سجّل الدخول إلى حساب مجمعك أو لوحة إدارة المنصة.",
+    "email": "البريد الإلكتروني للعمل",
+    "password": "كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "rememberDevice": "تذكّر هذا الجهاز ٣٠ يومًا",
+    "signIn": "تسجيل الدخول",
+    "or": "أو",
+    "sso": "الدخول الموحّد للمؤسسات (SSO)",
+    "mfaNotice": "سيُطلب رمز التحقق الثنائي (MFA) لحسابات المديرين وإدارة المنصة.",
+    "mfaTitle": "أدخل رمز التحقق",
+    "mfaHint": "افتح تطبيق المصادقة وأدخل الرمز المكوّن من ٦ أرقام.",
+    "locked": "تم إيقاف الدخول مؤقتًا بعد محاولات متعددة. حاول بعد {minutes} دقيقة."
+  },
+  "nav": {
+    "overview": "نظرة عامة",
+    "home": "الرئيسية",
+    "inbox": "صندوق الوارد",
+    "customers": "العملاء",
+    "pipeline": "المسار",
+    "appointments": "المواعيد",
+    "tasks": "المهام",
+    "reports": "التقارير",
+    "campaigns": "الحملات",
+    "staff": "الموظفون",
+    "channels": "القنوات",
+    "settings": "الإعدادات",
+    "billing": "الاشتراك والفواتير",
+    "audit": "سجل التدقيق",
+    "medicalCenters": "المجمعات",
+    "countries": "الدول والمناطق",
+    "plans": "الباقات والأسعار",
+    "subscriptions": "الاشتراكات",
+    "invoices": "الفواتير",
+    "support": "الدعم وطلبات الوصول",
+    "systemHealth": "صحة الأنظمة",
+    "notifications": "الإشعارات",
+    "integrations": "التكاملات"
+  },
+  "conversationStatus": {
+    "new": "جديدة",
+    "open": "مفتوحة",
+    "pending": "معلّقة",
+    "waiting_customer": "بانتظار العميل",
+    "resolved": "تمت المعالجة",
+    "closed": "مغلقة"
+  },
+  "pipelineStage": {
+    "new_inquiry": "استفسار جديد",
+    "contacted": "تم التواصل",
+    "qualified": "عميل مؤهَّل",
+    "appointment_requested": "طلب موعد",
+    "appointment_booked": "تم الحجز",
+    "appointment_confirmed": "تم التأكيد",
+    "attended": "حضر",
+    "cancelled": "ألغى",
+    "no_show": "لم يحضر",
+    "closed": "مغلق"
+  },
+  "channel": {
+    "whatsapp": "واتساب",
+    "messenger": "ماسنجر",
+    "instagram": "إنستقرام",
+    "meta_leads": "نماذج Meta",
+    "tiktok_leads": "نماذج TikTok",
+    "tiktok_dm": "رسائل TikTok",
+    "voice": "مكالمة",
+    "webchat": "دردشة الموقع"
+  },
+  "integrationState": {
+    "mock": "وهمي",
+    "sandbox": "تجريبي",
+    "live": "متصل",
+    "error": "خطأ",
+    "blocked": "غير متاح بعد"
+  },
+  "inbox": {
+    "title": "صندوق الوارد",
+    "searchPlaceholder": "ابحث بالاسم أو الرقم أو الوسم",
+    "filterAll": "الكل",
+    "filterUnassigned": "غير معيّن",
+    "filterMine": "محادثاتي",
+    "filterSlaBreached": "تجاوز SLA",
+    "awaitingAgent": "بانتظار الموظف",
+    "awaitingFor": "بانتظار الرد منذ {minutes, plural, zero {أقل من دقيقة} one {دقيقة واحدة} two {دقيقتين} few {# دقائق} many {# دقيقة} other {# دقيقة}}",
+    "slaTarget": "الهدف {minutes} دقائق",
+    "assignTo": "تعيين إلى: {name}",
+    "createBooking": "إنشاء موعد",
+    "replyPlaceholder": "اكتب ردًا أو / للقوالب",
+    "send": "إرسال",
+    "internalNote": "ملاحظة داخلية",
+    "window24hExpired": "انتهت نافذة الـ ٢٤ ساعة في واتساب. استخدم قالبًا معتمدًا للرد.",
+    "empty": "لا توجد محادثات هنا. أحسنت!",
+    "count": "{count, plural, zero {لا محادثات} one {محادثة واحدة} two {محادثتان} few {# محادثات} many {# محادثة} other {# محادثة}}"
+  },
+  "appointment": {
+    "status": {
+      "requested": "مطلوب",
+      "booked": "محجوز",
+      "confirmed": "مؤكد",
+      "attended": "حضر",
+      "no_show": "لم يحضر",
+      "cancelled": "ملغى",
+      "rescheduled": "أعيدت جدولته"
+    }
+  },
+  "kpi": {
+    "inquiries": "استفسارات",
+    "firstResponse": "زمن أول رد",
+    "bookings": "حجوزات",
+    "attendance": "نسبة الحضور",
+    "missedCalls": "مكالمات فائتة",
+    "estimated": "تقديري"
+  },
+  "branding": {
+    "accentAdjusted": "اللون المختار غير واضح مع النص الأبيض؛ استخدمنا أقرب درجة مقروءة.",
+    "logo": "شعار المجمع",
+    "accentColor": "لون التمييز"
+  },
+  "errors": {
+    "generic": "حدث خطأ غير متوقع. حاول مرة أخرى.",
+    "notFound": "لم نجد ما تبحث عنه.",
+    "forbidden": "ليست لديك صلاحية لهذا الإجراء.",
+    "network": "تعذّر الاتصال. تحقق من الإنترنت."
+  }
+}

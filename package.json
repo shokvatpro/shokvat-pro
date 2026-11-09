@@ -1,0 +1,22 @@
+{
+  "name": "shokfat-pro",
+  "private": true,
+  "description": "شوكفات برو — International Medical CRM SaaS. Proprietary software owned by Shokfat.",
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@10.28.0",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "tokens": "pnpm --filter @shokfat/design-tokens build",
+    "gallery": "pnpm --filter @shokfat/ui gallery"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "typescript": "^6.0.0",
+    "tsx": "^4.20.0",
+    "@types/node": "^22.0.0"
+  }
+}

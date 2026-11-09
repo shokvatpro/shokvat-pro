@@ -1,0 +1,159 @@
+{
+  "brand": {
+    "product": "Shokfat Pro",
+    "company": "Shokfat",
+    "pro": "Pro",
+    "poweredBy": "Powered by Shokfat Pro",
+    "copyright": "© {year} Shokfat. All rights reserved."
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "search": "Search",
+    "filter": "Filter",
+    "loading": "Loading…",
+    "retry": "Try again",
+    "viewAll": "View all",
+    "more": "More",
+    "unassigned": "Unassigned",
+    "required": "Required",
+    "optional": "Optional",
+    "language": "Language",
+    "switchLanguage": "العربية",
+    "themeToggle": "Toggle dark mode",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System"
+  },
+  "demo": {
+    "badge": "Demo data",
+    "notice": "All names and numbers on this screen are synthetic, for demonstration only."
+  },
+  "auth": {
+    "welcomeBack": "Welcome back",
+    "subtitle": "Sign in to your medical center or the platform console.",
+    "email": "Work email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "rememberDevice": "Remember this device for 30 days",
+    "signIn": "Sign in",
+    "or": "or",
+    "sso": "Enterprise single sign-on (SSO)",
+    "mfaNotice": "Two-factor authentication (MFA) is required for administrators and platform staff.",
+    "mfaTitle": "Enter verification code",
+    "mfaHint": "Open your authenticator app and enter the 6-digit code.",
+    "locked": "Sign-in is paused after several attempts. Try again in {minutes} minutes."
+  },
+  "nav": {
+    "overview": "Overview",
+    "home": "Home",
+    "inbox": "Inbox",
+    "customers": "Customers",
+    "pipeline": "Pipeline",
+    "appointments": "Appointments",
+    "tasks": "Tasks",
+    "reports": "Reports",
+    "campaigns": "Campaigns",
+    "staff": "Staff",
+    "channels": "Channels",
+    "settings": "Settings",
+    "billing": "Subscription & billing",
+    "audit": "Audit log",
+    "medicalCenters": "Medical centers",
+    "countries": "Countries & regions",
+    "plans": "Plans & pricing",
+    "subscriptions": "Subscriptions",
+    "invoices": "Invoices",
+    "support": "Support & access requests",
+    "systemHealth": "System health",
+    "notifications": "Notifications",
+    "integrations": "Integrations"
+  },
+  "conversationStatus": {
+    "new": "New",
+    "open": "Open",
+    "pending": "Pending",
+    "waiting_customer": "Waiting for customer",
+    "resolved": "Resolved",
+    "closed": "Closed"
+  },
+  "pipelineStage": {
+    "new_inquiry": "New inquiry",
+    "contacted": "Contacted",
+    "qualified": "Qualified lead",
+    "appointment_requested": "Appointment requested",
+    "appointment_booked": "Appointment booked",
+    "appointment_confirmed": "Appointment confirmed",
+    "attended": "Attended",
+    "cancelled": "Cancelled",
+    "no_show": "No-show",
+    "closed": "Closed"
+  },
+  "channel": {
+    "whatsapp": "WhatsApp",
+    "messenger": "Messenger",
+    "instagram": "Instagram",
+    "meta_leads": "Meta lead forms",
+    "tiktok_leads": "TikTok lead forms",
+    "tiktok_dm": "TikTok messages",
+    "voice": "Call",
+    "webchat": "Website chat"
+  },
+  "integrationState": {
+    "mock": "Mock",
+    "sandbox": "Sandbox",
+    "live": "Connected",
+    "error": "Error",
+    "blocked": "Not available yet"
+  },
+  "inbox": {
+    "title": "Inbox",
+    "searchPlaceholder": "Search name, phone or tag",
+    "filterAll": "All",
+    "filterUnassigned": "Unassigned",
+    "filterMine": "Mine",
+    "filterSlaBreached": "SLA breached",
+    "awaitingAgent": "Waiting on agent",
+    "awaitingFor": "Waiting {minutes, plural, zero {under a minute} one {# minute} other {# minutes}}",
+    "slaTarget": "Target {minutes} min",
+    "assignTo": "Assign: {name}",
+    "createBooking": "Create booking",
+    "replyPlaceholder": "Type a reply or / for templates",
+    "send": "Send",
+    "internalNote": "Internal note",
+    "window24hExpired": "The WhatsApp 24-hour window has closed. Use an approved template to reply.",
+    "empty": "No conversations here. Nice work!",
+    "count": "{count, plural, zero {No conversations} one {# conversation} other {# conversations}}"
+  },
+  "appointment": {
+    "status": {
+      "requested": "Requested",
+      "booked": "Booked",
+      "confirmed": "Confirmed",
+      "attended": "Attended",
+      "no_show": "No-show",
+      "cancelled": "Cancelled",
+      "rescheduled": "Rescheduled"
+    }
+  },
+  "kpi": {
+    "inquiries": "Inquiries",
+    "firstResponse": "First response",
+    "bookings": "Bookings",
+    "attendance": "Attendance rate",
+    "missedCalls": "Missed calls",
+    "estimated": "Estimated"
+  },
+  "branding": {
+    "accentAdjusted": "The chosen colour isn't readable with white text, so we used the nearest readable shade.",
+    "logo": "Center logo",
+    "accentColor": "Accent colour"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "notFound": "We couldn't find what you're looking for.",
+    "forbidden": "You don't have permission to do this.",
+    "network": "Can't connect. Check your internet connection."
+  }
+}
