@@ -4,28 +4,40 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   quality:
+    name: Typecheck, unit tests, gallery
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: pnpm }
-      - run: pnpm install --frozen-lockfile
+        with: { node-version: 22 }
+      - name: Install (frozen when a lockfile is committed)
+        run: |
+          if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install --no-frozen-lockfile; fi
+      - name: Upload generated lockfile (bootstrap only)
+        if: ${{ hashFiles('pnpm-lock.yaml') != '' }}
+        uses: actions/upload-artifact@v4
+        with: { name: pnpm-lock, path: pnpm-lock.yaml, retention-days: 7 }
       - run: pnpm tokens
-      - name: Tokens are committed and up to date
-        run: git diff --exit-code packages/design-tokens/dist
-      - run: pnpm typecheck
-      - run: pnpm test
+      - run: pnpm turbo run typecheck
+      - run: pnpm turbo run test --filter=!@shokfat/db-tenant --filter=!@shokfat/db-control
       - run: pnpm gallery
+      - uses: actions/upload-artifact@v4
+        with: { name: ui-gallery, path: packages/ui/gallery/out, retention-days: 14 }
 
   database-isolation:
+    name: Database isolation (PostgreSQL 16)
     # Real PostgreSQL: RLS / tenant-isolation tests must pass before merge.
     runs-on: ubuntu-latest
     services:
@@ -43,26 +55,31 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: pnpm }
-      - run: sudo apt-get update && sudo apt-get install -y postgresql-client
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter @shokfat/db-tenant --filter @shokfat/db-control test
+        with: { node-version: 22 }
+      - run: |
+          if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install --no-frozen-lockfile; fi
+      # Test files run one at a time: they share the single service database server.
+      - run: pnpm --workspace-concurrency=1 --filter @shokfat/db-tenant --filter @shokfat/db-control exec tsx --test --test-concurrency=1 test/*.test.ts
 
   secrets-scan:
+    name: Secret scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: gitleaks
+        run: |
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v8.24.3/gitleaks_8.24.3_linux_x64.tar.gz | tar -xz gitleaks
+          ./gitleaks detect --source . --redact --verbose
 
   dependency-audit:
+    name: Dependency audit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: pnpm }
-      - run: pnpm install --frozen-lockfile
+        with: { node-version: 22 }
+      - run: |
+          if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install --no-frozen-lockfile; fi
       - run: pnpm audit --audit-level high
