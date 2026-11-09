@@ -14,6 +14,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  lockfile-bootstrap:
+    name: Commit pnpm-lock.yaml if missing
+    # Runs only on PRs from this repository. Once the lockfile exists this job is a no-op.
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.head_ref }}" }
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: |
+          if [ -f pnpm-lock.yaml ]; then echo "lockfile present — nothing to do"; exit 0; fi
+          pnpm install --lockfile-only
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pnpm-lock.yaml
+          git commit -m "chore: add generated pnpm-lock.yaml"
+          git push origin "HEAD:${{ github.head_ref }}"
+
   quality:
     name: Typecheck, unit tests, gallery
     runs-on: ubuntu-latest
@@ -25,10 +47,6 @@ jobs:
       - name: Install (frozen when a lockfile is committed)
         run: |
           if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install --no-frozen-lockfile; fi
-      - name: Upload generated lockfile (bootstrap only)
-        if: ${{ hashFiles('pnpm-lock.yaml') != '' }}
-        uses: actions/upload-artifact@v4
-        with: { name: pnpm-lock, path: pnpm-lock.yaml, retention-days: 7 }
       - run: pnpm tokens
       - run: pnpm turbo run typecheck
       - run: pnpm turbo run test --filter=!@shokfat/db-tenant --filter=!@shokfat/db-control
