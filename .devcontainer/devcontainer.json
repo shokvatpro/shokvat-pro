@@ -1,0 +1,22 @@
+{
+  "name": "Shokfat Pro",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "forwardPorts": [3000, 4000, 4100],
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y postgresql-client && corepack enable && pnpm install && pnpm tokens",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "bradlc.vscode-tailwindcss", "ms-azuretools.vscode-docker"],
+      "settings": { "editor.formatOnSave": true }
+    }
+  },
+  "remoteEnv": {
+    "TEST_PG_HOST": "db",
+    "TEST_PG_PORT": "5432",
+    "REDIS_URL": "redis://redis:6379"
+  }
+}

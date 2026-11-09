@@ -1,0 +1,18 @@
+# Development only — synthetic data. Never point this at real patient data.
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/typescript-node:22
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    depends_on: [db, redis]
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  redis:
+    image: redis:7-alpine
+volumes:
+  pgdata:
