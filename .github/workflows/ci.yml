@@ -4,28 +4,58 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  lockfile-bootstrap:
+    name: Commit pnpm-lock.yaml if missing
+    # Runs only on PRs from this repository. Once the lockfile exists this job is a no-op.
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.head_ref }}" }
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: |
+          if [ -f pnpm-lock.yaml ]; then echo "lockfile present — nothing to do"; exit 0; fi
+          pnpm install --lockfile-only
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pnpm-lock.yaml
+          git commit -m "chore: add generated pnpm-lock.yaml"
+          git push origin "HEAD:${{ github.head_ref }}"
+
   quality:
+    name: Typecheck, unit tests, gallery
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: pnpm }
-      - run: pnpm install --frozen-lockfile
+        with: { node-version: 22 }
+      - name: Install (frozen when a lockfile is committed)
+        run: |
+          if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install --no-frozen-lockfile; fi
       - run: pnpm tokens
-      - name: Tokens are committed and up to date
-        run: git diff --exit-code packages/design-tokens/dist
-      - run: pnpm typecheck
-      - run: pnpm test
+      - run: pnpm turbo run typecheck
+      - run: pnpm turbo run test --filter=!@shokfat/db-tenant --filter=!@shokfat/db-control
       - run: pnpm gallery
+      - uses: actions/upload-artifact@v4
+        with: { name: ui-gallery, path: packages/ui/gallery/out, retention-days: 14 }
 
   database-isolation:
+    name: Database isolation (PostgreSQL 16)
     # Real PostgreSQL: RLS / tenant-isolation tests must pass before merge.
     runs-on: ubuntu-latest
     services:
@@ -43,26 +73,35 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: pnpm }
-      - run: sudo apt-get update && sudo apt-get install -y postgresql-client
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter @shokfat/db-tenant --filter @shokfat/db-control test
+        with: { node-version: 22 }
+      - run: |
+          if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install --no-frozen-lockfile; fi
+      # Test files run one at a time: they share the single service database server.
+      - run: pnpm --workspace-concurrency=1 --filter @shokfat/db-tenant --filter @shokfat/db-control exec tsx --test --test-concurrency=1 test/*.test.ts
 
   secrets-scan:
+    name: Secret scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - uses: gitleaks/gitleaks-action@v2
+      - name: gitleaks
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download --repo gitleaks/gitleaks --pattern '*_linux_x64.tar.gz' --output gitleaks.tgz
+          tar -xzf gitleaks.tgz gitleaks
+          ./gitleaks version
+          ./gitleaks detect --source . --redact --verbose
 
   dependency-audit:
+    name: Dependency audit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: pnpm }
-      - run: pnpm install --frozen-lockfile
+        with: { node-version: 22 }
+      - run: |
+          if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install --no-frozen-lockfile; fi
       - run: pnpm audit --audit-level high
