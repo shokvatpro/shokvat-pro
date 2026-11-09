@@ -5,13 +5,17 @@ International multi-tenant Medical CRM SaaS, owned and operated by **Shokfat**. 
 
 ## الحالة
 - المرحلة 1 (التحليل والمعمارية): ✅ معتمدة — `docs/`
-- المرحلة 2 (نظام التصميم): 🟡 قيد التنفيذ — `docs/PHASE_2_STATUS.md`
+- المرحلة 2 (نظام التصميم): 🟡 الأساس منجز — `docs/PHASE_2_STATUS.md`
+- المرحلة 3 (تعدد المستأجرين): 🟡 طبقة قاعدة البيانات منجزة ومختبرة — `docs/PHASE_3_STATUS.md`
 
 ## البنية
 ```
 packages/design-tokens   الألوان والخطوط والمسافات — فاتح/داكن + هوية المجمعات (مختبرة للتباين)
 packages/i18n            العربية والإنجليزية، الاتجاه، تنسيق العملات والتواريخ، التطبيع العربي للبحث
 packages/ui              مكونات React (RTL/LTR، فاتح/داكن، هوية المجمع) + معرض ثابت
+packages/db-control      قاعدة Control Plane: الدول، الباقات، الاشتراكات، الهوية (SQL + اختبارات)
+packages/db-tenant       قاعدة Data Plane: بيانات المجمعات مع RLS مفروض وعزل الفروع (SQL + اختبارات + بيانات وهمية)
+packages/db-tools        تشغيل PostgreSQL مؤقت للاختبارات
 assets/brand             شعار شوكفات (الأصلي + نسخ منظّفة شفافة)
 docs/                    وثائق المنتج والمعمارية والأمان والقرارات
 apps/                    (المرحلة 3) web · control-api · tenant-api · worker

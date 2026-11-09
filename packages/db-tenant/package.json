@@ -1,0 +1,12 @@
+{
+  "name": "@shokfat/db-tenant",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "SQL migrations and real-PostgreSQL tests for the Regional Data Plane (tenant data, RLS).",
+  "scripts": {
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": { "@shokfat/db-tools": "workspace:*", "tsx": "^4.20.0", "typescript": "^6.0.0", "@types/node": "^22.0.0" }
+}
